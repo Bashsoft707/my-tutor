@@ -19,7 +19,7 @@ const getLearningPath: RequestHandler = async (req, res, next) => {
         throw new ErrorHandler(400, "Fill in all required data")
     }
 
-    const profile = await generateLearningPath(userProfile, "")
+    // const profile = await generateLearningPath(userProfile, "")
 
     return res.status(201).json({
       success: true,
@@ -29,24 +29,3 @@ const getLearningPath: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-
-// const lee: RequestHandler = async (req, res, next) => {
-//   try {
-//     const { query, userId } = req.body;
-
-//     const userProfile = getUserProfile(userId);
-
-//     const gpt3Response = await axios.post("/api/get", { prompt: query });
-
-//     // Update user profile based on the response and user interactions
-//     // For simplicity, let's assume the user advances to the next difficulty level after each interaction
-//     updateUserProfile(userId, { ...userProfile, knowledgeLevel: 'Intermediate' });
-
-//     // Generate the next set of lessons based on the Learning Path Generator
-//     const learningPath = generateLearningPath(userProfile, curriculum);
-
-//     res.json({ answer: gpt3Response.data.choices[0]?.text, learningPath });
-//   } catch (error) {
-//     next(error)
-//   }
-// }
