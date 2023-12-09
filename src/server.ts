@@ -26,7 +26,7 @@ initializeDataSources().then(() => {
   app.use("/api", user);
 
   app.get("/", (_req: Request, res: Response) => {
-    return res.status(200).send("WELCOME TO ONEFLARE POS DESKTOP APP!");
+    return res.status(200).send("WELCOME TO MY TUTOR APP!");
   });
 
   app.post("/api/chat", async (req, res, next) => {
