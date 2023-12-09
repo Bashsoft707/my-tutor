@@ -9,8 +9,7 @@ const register: RequestHandler = async (req, res, next) => {
   try {
     const salt = Math.floor(Math.random() * 10);
     const {
-      firstName,
-      lastName,
+      username,
       email,
       password: plainTextPassword,
       businessName,
@@ -35,8 +34,7 @@ const register: RequestHandler = async (req, res, next) => {
     const hashPassword = await bcrypt.hash(plainTextPassword, salt);
 
     const newUser = await connectDB.getRepository(User).save({
-      firstName,
-      lastName,
+      username,
       email,
       password: hashPassword,
       ...rest,
@@ -70,7 +68,7 @@ const login: RequestHandler = async (req, res, next) => {
     }
 
     // Check the password
-    const { email: userMail, password, firstName, lastName } = userExists ?? {};
+    const { email: userMail, password, username } = userExists ?? {};
 
     const isPasswordCorrect = await bcrypt.compare(plainTextPassword, password);
 
@@ -82,8 +80,7 @@ const login: RequestHandler = async (req, res, next) => {
     const token = sign(
       {
         _id: userExists.id,
-        firstName,
-        lastName,
+        username,
         email: userMail,
       },
       (SECRET_KEY as string) || "secretKey",

@@ -20,16 +20,10 @@ export class User {
   updatedAt: Date;
 
   @Column()
-  firstName: string;
-
-  @Column()
-  lastName: string;
+  username: string;
 
   @Column({ unique: true })
   email: string;
-
-  @Column()
-  phone: string;
 
   @Column()
   password: string;
