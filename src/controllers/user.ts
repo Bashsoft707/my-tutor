@@ -59,10 +59,9 @@ const register: RequestHandler = async (req, res, next) => {
 const login: RequestHandler = async (req, res, next) => {
   try {
     const { email, password: plainTextPassword } = req.body;
-    const { type } = req.params;
 
     // Check if the user exists on the local database
-    let userExists = await connectDB.manager.findOne(User, {
+    const userExists = await connectDB.manager.findOne(User, {
       where: { email },
     });
 

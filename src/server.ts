@@ -4,6 +4,7 @@ import { connectDB } from "./config/database";
 import { user } from "./routes";
 import "reflect-metadata";
 import { openai } from "./config/open-ai";
+import cors from "cors";
 
 const app = express();
 
@@ -21,6 +22,12 @@ const initializeDataSources = async () => {
 
 initializeDataSources().then(() => {
   const port = PORT || 5000;
+
+  app.use(
+    cors({
+      origin: "*",
+    })
+  );
 
   // User routes
   app.use("/api", user);
@@ -53,7 +60,9 @@ initializeDataSources().then(() => {
         // });
 
         const completion = await openai.chat.completions.create({
-          messages: [{ role: "system", content: "You are a helpful assistant." }],
+          messages: [
+            { role: "system", content: "You are a helpful assistant." },
+          ],
           model: "gpt-3.5-turbo",
         });
 
@@ -74,7 +83,7 @@ initializeDataSources().then(() => {
         return res.status(200).send({ status: "ok", data: chatHistory });
       } catch (error) {
         console.error(error);
-        next(error)
+        next(error);
       }
     }
   });
