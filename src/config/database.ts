@@ -1,21 +1,15 @@
 import { DataSource } from "typeorm";
-import { User } from "../entity";
-import { PG_DB, PG_PASSWORD, PG_USERNAME } from "../helpers";
+import { Lesson, Profile, User } from "../entity";
+import { PG_DB, PG_PASSWORD, PG_USERNAME, PG_HOST } from "../helpers";
+import { LearningPath } from "../entity/learning-path";
 
 export const connectDB = new DataSource({
-  type: "sqlite",
-  database: "localDB",
-  entities: [User],
+  type: "postgres",
+  host: PG_HOST,
+  port: 5432,
+  username: PG_USERNAME,
+  password: PG_PASSWORD,
+  database: PG_DB,
+  entities: [User, Lesson, Profile, LearningPath],
   synchronize: true,
 });
-
-// export const onlineDataSource = new DataSource({
-//   type: "postgres",
-//   host: "db.idrbkpexkgsxjunckxuj.supabase.co",
-//   port: 5432,
-//   username: PG_USERNAME,
-//   password: PG_PASSWORD,
-//   database: PG_DB,
-//   entities: [],
-//   synchronize: true,
-// });

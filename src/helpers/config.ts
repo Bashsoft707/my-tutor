@@ -21,4 +21,6 @@ export const {
   PG_USERNAME,
   PG_PASSWORD,
   PG_DB,
+  PG_HOST,
+  OPENAI_API_KEY
 } = process.env;

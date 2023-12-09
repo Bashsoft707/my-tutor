@@ -4,7 +4,9 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
 } from "typeorm";
+import { Profile } from "./profile";
 
 @Entity()
 export class User {
@@ -31,4 +33,7 @@ export class User {
 
   @Column()
   password: string;
+
+  @OneToOne(() => Profile, (profile) => profile.user)
+  profile: Profile
 }

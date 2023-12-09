@@ -18,5 +18,7 @@ export {
   PG_USERNAME,
   PG_PASSWORD,
   PG_DB,
+  PG_HOST,
+  OPENAI_API_KEY
 } from "./config";
-export { createRef } from "./utils";
+export {generateLearningPath, calculateProgress} from "./utils"
