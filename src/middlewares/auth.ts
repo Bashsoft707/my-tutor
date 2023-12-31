@@ -25,6 +25,8 @@ const verifyToken: RequestHandler = async (req, res, next) => {
       .getRepository(User)
       .findOne({ where: { id: decoded._id }, relations: ["profile"] });
 
+      console.log("user", user)
+
     if (!user) {
       throw new ErrorHandler(400, "Invalid token");
     }

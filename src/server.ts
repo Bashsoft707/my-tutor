@@ -1,7 +1,7 @@
 import express, { NextFunction, Response, Request } from "express";
 import { PORT, handleError, NODE_ENV } from "./helpers";
 import { connectDB } from "./config/database";
-import { user } from "./routes";
+import { user, profile } from "./routes";
 import "reflect-metadata";
 import { openai } from "./config/open-ai";
 import cors from "cors";
@@ -30,7 +30,7 @@ initializeDataSources().then(() => {
   );
 
   // User routes
-  app.use("/api", user);
+  app.use("/api", user, profile);
 
   app.get("/", (_req: Request, res: Response) => {
     return res.status(200).send("WELCOME TO MY TUTOR APP!");

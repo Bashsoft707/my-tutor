@@ -24,14 +24,11 @@ export class Profile {
   @Column()
   knowledgeLevel: string;
 
-  @Column()
-  learningStyle: string;
-
-  @Column()
+  @Column({ default: 0 })
   progress: number;
 
-   // Use a custom transformer to store the array as a JSON string
-   @Column({
+  // Use a custom transformer to store the array as a JSON string
+  @Column({
     transformer: {
       to: (value: string[]) => JSON.stringify(value),
       from: (value: string) => JSON.parse(value),

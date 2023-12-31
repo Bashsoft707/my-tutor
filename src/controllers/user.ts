@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import { connectDB } from "../config/database";
-import { User } from "../entity";
+import { Profile, User } from "../entity";
 import { ErrorHandler, SECRET_KEY } from "../helpers";
 import bcrypt from "bcrypt";
 import { sign } from "jsonwebtoken";
@@ -61,11 +61,19 @@ const login: RequestHandler = async (req, res, next) => {
     // Check if the user exists on the local database
     const userExists = await connectDB.manager.findOne(User, {
       where: { email },
+      // relations: ["profile"]
     });
 
     if (!userExists) {
       throw new ErrorHandler(404, "User account does not exist");
     }
+
+    // const profile = await connectDB.getRepository(Profile).findOne({
+    //   where: { user: { id: userExists.id } },
+    //   relations: ["user"]
+    // });
+
+    // console.log(profile);
 
     // Check the password
     const { email: userMail, password, username } = userExists ?? {};
