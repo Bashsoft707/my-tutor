@@ -1,13 +1,11 @@
-import { Profile as UserProfile, Lesson, Profile } from "../entity";
-import { LearningPath } from "../entity/learning-path";
-import { connectDB } from "../config";
+import { Profile as UserProfile, Lesson, Profile } from "../models";
 
 export const calculateProgress = (
-  completedLessons: Lesson[],
-  totalLessons: Lesson[]
+  completedLessons: any,
+  totalLessons: any
 ): number => {
-  const completedLessonIds = completedLessons.map((lesson) => lesson.id);
-  const totalLessonIds = totalLessons.map((lesson) => lesson.id);
+  const completedLessonIds = completedLessons.map((lesson: any) => lesson.id);
+  const totalLessonIds = totalLessons.map((lesson: any) => lesson.id);
 
   const uniqueCompletedLessonIds = [...new Set(completedLessonIds)];
   const uniqueTotalLessonIds = [...new Set(totalLessonIds)];
@@ -18,8 +16,8 @@ export const calculateProgress = (
 };
 
 export const generateLearningPath = async (
-  userProfile: UserProfile,
-  totalLessons: Lesson[]
+  userProfile: any,
+  totalLessons: any
 ) => {
   const progress = userProfile.progress;
   const learningPathSize = 3; // Adjust the number of lessons per session
@@ -40,9 +38,11 @@ export const generateLearningPath = async (
 
   // Update the database with the new progress
   // This assumes you have access to the database connection and UserProfile repository
-  await connectDB
-    .getRepository(Profile)
-    .update(userProfile.id, { progress: updatedProgress });
+  await Profile.findOneAndUpdate(
+    { id: userProfile.id },
+    { progress: updatedProgress },
+    { new: true }
+  );
 
   return slicedLessons;
 };

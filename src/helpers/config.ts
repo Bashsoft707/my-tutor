@@ -22,5 +22,6 @@ export const {
   PG_PASSWORD,
   PG_DB,
   PG_HOST,
-  OPENAI_API_KEY
+  OPENAI_API_KEY,
+  MONGO_URL
 } = process.env;

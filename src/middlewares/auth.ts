@@ -1,8 +1,7 @@
 import { RequestHandler } from "express";
 import { verify } from "jsonwebtoken";
 import { ErrorHandler, SECRET_KEY } from "../helpers";
-import { connectDB } from "../config";
-import { User } from "../entity";
+import { User } from "../models";
 
 interface IDecode {
   _id: string;
@@ -21,11 +20,9 @@ const verifyToken: RequestHandler = async (req, res, next) => {
       SECRET_KEY || ("secretKey" as string)
     ) as IDecode;
 
-    const user = await connectDB
-      .getRepository(User)
-      .findOne({ where: { id: decoded._id }, relations: ["profile"] });
-
-      console.log("user", user)
+    const user = await User.findOne({ _id: decoded._id })
+      .populate({path: "profile", model: "Profile"})
+      .exec();
 
     if (!user) {
       throw new ErrorHandler(400, "Invalid token");

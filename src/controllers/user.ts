@@ -1,6 +1,5 @@
 import { RequestHandler } from "express";
-import { connectDB } from "../config/database";
-import { Profile, User } from "../entity";
+import { Profile, User } from "../models";
 import { ErrorHandler, SECRET_KEY } from "../helpers";
 import bcrypt from "bcrypt";
 import { sign } from "jsonwebtoken";
@@ -16,9 +15,8 @@ const register: RequestHandler = async (req, res, next) => {
       ...rest
     } = req.body;
 
-    const userExists = await connectDB.getRepository(User).findOne({
-      where: { email },
-    });
+    const userExists = await User.findOne({
+     email });
 
     if (userExists) {
       throw new ErrorHandler(400, "User already exists");
@@ -33,7 +31,7 @@ const register: RequestHandler = async (req, res, next) => {
 
     const hashPassword = await bcrypt.hash(plainTextPassword, salt);
 
-    const newUser = await connectDB.getRepository(User).save({
+    const newUser = await User.create({
       username,
       email,
       password: hashPassword,
@@ -59,21 +57,11 @@ const login: RequestHandler = async (req, res, next) => {
     const { email, password: plainTextPassword } = req.body;
 
     // Check if the user exists on the local database
-    const userExists = await connectDB.manager.findOne(User, {
-      where: { email },
-      // relations: ["profile"]
-    });
+    const userExists = await User.findOne({ email}).populate("profile");
 
     if (!userExists) {
       throw new ErrorHandler(404, "User account does not exist");
     }
-
-    // const profile = await connectDB.getRepository(Profile).findOne({
-    //   where: { user: { id: userExists.id } },
-    //   relations: ["user"]
-    // });
-
-    // console.log(profile);
 
     // Check the password
     const { email: userMail, password, username } = userExists ?? {};

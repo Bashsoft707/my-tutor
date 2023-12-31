@@ -1,15 +1,15 @@
-import { DataSource } from "typeorm";
-import { Lesson, Profile, User } from "../entity";
-import { PG_DB, PG_PASSWORD, PG_USERNAME, PG_HOST } from "../helpers";
-import { LearningPath } from "../entity/learning-path";
+import { ConnectOptions, connect } from "mongoose";
+import { MONGO_URL } from "../helpers";
 
-export const connectDB = new DataSource({
-  type: "postgres",
-  host: PG_HOST,
-  port: 5432,
-  username: PG_USERNAME,
-  password: PG_PASSWORD,
-  database: PG_DB,
-  entities: [User, Lesson, Profile, LearningPath],
-  synchronize: true,
-});
+const dbURL = MONGO_URL || "mongodb://localhost/auth";
+
+const connectDB = () => {
+  connect(dbURL, {
+    retryWrites: true,
+    w: "majority",
+  } as ConnectOptions)
+    .then(() => console.log("mongodb connected"))
+    .catch((err) => console.log(err, "db disconnected"));
+};
+
+export default connectDB;

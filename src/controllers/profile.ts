@@ -1,35 +1,38 @@
 import { RequestHandler } from "express";
-import { connectDB } from "../config/database";
-import { Profile, User } from "../entity";
+import { Profile, User } from "../models";
 import { ErrorHandler } from "../helpers";
 
 const createProfile: RequestHandler = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const {
+      user: { _id },
+    } = res.locals;
 
-    console.log("id", id)
+    console.log("user", res.locals.user);
 
-    const userExists = await connectDB.getRepository(User).findOne({
-      where: { id: undefined },
+    const userExists = await User.findOne({
+      _id,
     });
 
     if (!userExists) {
       throw new ErrorHandler(400, "User not found");
     }
 
-    console.log("user Exists", userExists, id)
-
     if (!Object.keys(req.body)) {
       throw new ErrorHandler(400, "Fill in all required data");
     }
 
-    const profile = await connectDB
-      .getRepository(Profile)
-      .save({ ...req.body, user: userExists });
+    const profile = await Profile.create({ ...req.body, user: _id });
 
     if (!profile) {
       throw new ErrorHandler(400, "Error in creating user profile");
     }
+
+    await User.findOneAndUpdate(
+      { _id },
+      { profile: profile.id },
+      { new: true }
+    );
 
     return res.status(201).json({
       success: true,
@@ -43,10 +46,12 @@ const createProfile: RequestHandler = async (req, res, next) => {
 
 const getUserProfile: RequestHandler = async (req, res, next) => {
   try {
-    const {user: {id}} = res.locals;
+    const {
+      user: { _id },
+    } = res.locals;
 
-    const userExists = await connectDB.getRepository(User).findOne({
-      where: { id },
+    const userExists = await User.findOne({
+      _id,
     });
 
     if (!userExists) {
@@ -57,9 +62,9 @@ const getUserProfile: RequestHandler = async (req, res, next) => {
       throw new ErrorHandler(400, "Fill in all required data");
     }
 
-    const profile = await connectDB
-      .getRepository(Profile)
-      .findOne({ where: {user: {id: userExists.id}}})
+    const profile = await Profile.findOne({ user: { _id } })
+      .populate("user")
+      .exec();
 
     if (!profile) {
       throw new ErrorHandler(400, "Error in creating user profile");

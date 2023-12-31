@@ -1,14 +1,13 @@
 import { RequestHandler } from "express";
-import { connectDB } from "../config/database";
-import { Profile, User } from "../entity";
+import { Profile, User } from "../models";
 import { ErrorHandler, SECRET_KEY, generateLearningPath } from "../helpers";
 
 const getLearningPath: RequestHandler = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const userProfile = await connectDB.getRepository(Profile).findOne({
-      where: { id },
+    const userProfile = await Profile.findOne({
+      id,
     });
 
     if (!userProfile) {
@@ -16,7 +15,7 @@ const getLearningPath: RequestHandler = async (req, res, next) => {
     }
 
     if (!Object.keys(req.body)) {
-        throw new ErrorHandler(400, "Fill in all required data")
+      throw new ErrorHandler(400, "Fill in all required data");
     }
 
     // const profile = await generateLearningPath(userProfile, "")

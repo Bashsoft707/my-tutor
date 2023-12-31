@@ -1,11 +1,10 @@
 import { RequestHandler } from "express";
-import { connectDB } from "../config/database";
-import { Lesson } from "../entity";
+import { Lesson } from "../models";
 import { ErrorHandler } from "../helpers";
 
 const getAvailableLessons: RequestHandler = async (req, res, next) => {
   try {
-    const lessons = await connectDB.getRepository(Lesson).find()
+    const lessons = await Lesson.find()
 
     if (lessons.length < 0) {
       throw new ErrorHandler(400, "No lessons found");
