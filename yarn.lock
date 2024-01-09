@@ -350,6 +350,11 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
+bard-ai@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/bard-ai/-/bard-ai-2.0.3.tgz#5b7ee9dd9e19f9635dfd533116e59a545c52f94d"
+  integrity sha512-vlL5t4RG3MMG2m2JdZB/6DbcFlHaxdoDqvOOaOTS7pt/VR971pTAFjrjIZV25iiNvcDkzl6/Y2vrqCYkSwGyxg==
+
 base-64@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"

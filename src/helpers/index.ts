@@ -20,6 +20,7 @@ export {
   PG_DB,
   PG_HOST,
   OPENAI_API_KEY,
-  MONGO_URL
+  MONGO_URL,
+  BARD_API_KEY
 } from "./config";
 export {generateLearningPath, calculateProgress} from "./utils"

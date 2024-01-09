@@ -1,0 +1,138 @@
+{
+  "science": {
+    "beginner": [
+      {
+        "question": "What is the basic unit of life?",
+        "answer": "The basic unit of life is the cell."
+      },
+      {
+        "question": "Define gravity.",
+        "answer": "Gravity is the force that attracts two objects with mass towards each other."
+      },
+      {
+        "question": "Name the planets in our solar system.",
+        "answer": "The planets in our solar system include Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune."
+      },
+      {
+        "question": "What is the chemical symbol for water?",
+        "answer": "The chemical symbol for water is H2O."
+      },
+      {
+        "question": "Explain the concept of photosynthesis.",
+        "answer": "Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll."
+      }
+    ],
+    "intermediate": [
+      {
+        "question": "Describe the structure of an atom.",
+        "answer": "An atom consists of a nucleus containing protons and neutrons, with electrons orbiting the nucleus."
+      },
+      {
+        "question": "What is Newton's law of motion?",
+        "answer": "Newton's first law states that an object at rest will stay at rest, and an object in motion will stay in motion unless acted upon by a net external force."
+      },
+      {
+        "question": "Explain the principles of natural selection.",
+        "answer": "Natural selection is the process by which organisms with favorable traits are more likely to survive and reproduce, passing on their traits to the next generation."
+      },
+      {
+        "question": "Define the concept of pH.",
+        "answer": "pH is a measure of the acidity or alkalinity of a solution on a scale of 0 to 14, with 7 being neutral."
+      },
+      {
+        "question": "What is the theory of relativity?",
+        "answer": "The theory of relativity, developed by Albert Einstein, includes the special theory of relativity and the general theory of relativity, describing the relationship between space and time."
+      }
+    ],
+    "advanced": [
+      {
+        "question": "Explain the Heisenberg Uncertainty Principle.",
+        "answer": "The Heisenberg Uncertainty Principle states that it is impossible to simultaneously know both the precise position and the momentum of a particle."
+      },
+      {
+        "question": "Discuss the four fundamental forces in nature.",
+        "answer": "The four fundamental forces are gravity, electromagnetism, the weak nuclear force, and the strong nuclear force."
+      },
+      {
+        "question": "What is the significance of the Higgs boson?",
+        "answer": "The Higgs boson is a particle that gives mass to other particles through the Higgs field, contributing to our understanding of the origin of mass in the universe."
+      },
+      {
+        "question": "Explain the process of nuclear fusion.",
+        "answer": "Nuclear fusion is the process in which two atomic nuclei combine to form a heavier nucleus, releasing a large amount of energy."
+      },
+      {
+        "question": "Discuss the implications of quantum entanglement.",
+        "answer": "Quantum entanglement is a phenomenon where particles become correlated in such a way that the state of one particle instantly influences the state of another, even if they are far apart."
+      }
+    ]
+  },
+  "humanities": {
+    "beginner": [
+      {
+        "question": "Who wrote 'Romeo and Juliet'?",
+        "answer": "'Romeo and Juliet' was written by William Shakespeare."
+      },
+      {
+        "question": "What is the definition of democracy?",
+        "answer": "Democracy is a system of government where the citizens have the power to elect their leaders."
+      },
+      {
+        "question": "Who is the author of 'To Kill a Mockingbird'?",
+        "answer": "'To Kill a Mockingbird' was written by Harper Lee."
+      },
+      {
+        "question": "Define the term 'surrealism' in art.",
+        "answer": "Surrealism is an artistic and literary movement that seeks to explore the irrational and subconscious aspects of the human mind."
+      },
+      {
+        "question": "What is the Renaissance?",
+        "answer": "The Renaissance was a period of cultural, artistic, and intellectual rebirth in Europe during the 14th to 17th centuries."
+      }
+    ],
+    "intermediate": [
+      {
+        "question": "Explain the concept of existentialism.",
+        "answer": "Existentialism is a philosophical movement that emphasizes individual freedom, choice, and the responsibility of the individual for their actions."
+      },
+      {
+        "question": "Who wrote '1984'?",
+        "answer": "'1984' was written by George Orwell."
+      },
+      {
+        "question": "Discuss the impact of the Industrial Revolution on society.",
+        "answer": "The Industrial Revolution brought about significant social, economic, and technological changes, transforming societies from agrarian to industrial."
+      },
+      {
+        "question": "Define postmodernism in literature and art.",
+        "answer": "Postmodernism is a cultural, artistic, and literary movement that rejects traditional conventions and embraces ambiguity, diversity, and self-awareness."
+      },
+      {
+        "question": "What is the concept of the 'social contract' in political philosophy?",
+        "answer": "The social contract is a theory in political philosophy that suggests individuals agree to form a government for mutual protection and benefit."
+      }
+    ],
+    "advanced": [
+      {
+        "question": "Analyze the impact of globalization on cultural identity.",
+        "answer": "Globalization has led to interconnectedness, but it also raises concerns about the preservation of unique cultural identities in the face of cultural homogenization."
+      },
+      {
+        "question": "Discuss the role of women in the feminist movement.",
+        "answer": "The feminist movement advocates for the rights and equality of women in various aspects of society, including politics, the workplace, and personal relationships."
+      },
+      {
+        "question": "Explore the themes of post-colonial literature.",
+        "answer": "Post-colonial literature addresses the experiences of formerly colonized societies, examining issues of identity, power, and cultural representation."
+      },
+      {
+        "question": "Analyze the impact of technology on modern communication.",
+        "answer": "Technology has revolutionized communication, affecting interpersonal relationships, language use, and the dissemination of information in both positive and negative ways."
+      },
+      {
+        "question": "Discuss the philosophy of humanism in the Renaissance.",
+        "answer": "Humanism in the Renaissance emphasized the value of human achievement, intellectual pursuits, and the study of classical literature and arts."
+      }
+    ]
+  }
+}

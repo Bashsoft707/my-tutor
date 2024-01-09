@@ -1,9 +1,11 @@
 import express, { NextFunction, Response, Request } from "express";
-import { PORT, handleError, NODE_ENV } from "./helpers";
+import { PORT, handleError, NODE_ENV, BARD_API_KEY } from "./helpers";
 import connectDB from "./config/database";
 import { user, profile } from "./routes";
 import { openai } from "./config/open-ai";
 import cors from "cors";
+import * as fs from "fs";
+import path from "path";
 
 const app = express();
 
@@ -21,7 +23,7 @@ app.use(
 // User routes
 app.use("/api", user, profile);
 
-app.get("/", (_req: Request, res: Response) => {
+app.get("/", async (_req: Request, res: Response) => {
   return res.status(200).send("WELCOME TO MY TUTOR APP!");
 });
 
@@ -72,6 +74,20 @@ app.post("/api/chat", async (req, res, next) => {
       console.error(error);
       next(error);
     }
+  }
+});
+
+app.get("/api/get-datasets", (req: Request, res: Response) => {
+  try {
+    const filePath = path.join(__dirname, "datasets.json");
+
+    const data = fs.readFileSync(filePath, "utf-8");
+
+    const jsonData = JSON.parse(data);
+
+    res.json(jsonData);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
